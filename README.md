@@ -22,6 +22,6 @@ A one stop app where gamers or battle station enthusiasts can showcase their set
 - logout
 
 # ERD: 
-![layout](/ERDp4.jpg)
+![layout](/ERDp4v2.jpg)
 # Wireframe:
 ![layout](/WRFMp4.jpg)
