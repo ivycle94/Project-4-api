@@ -5,7 +5,7 @@ const { Schema, model } = mongoose
 
 const setupSchema = new mongoose.Schema(
     {
-        Title: {
+        title: {
             type: String,
             required: true,
         },

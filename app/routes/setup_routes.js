@@ -29,6 +29,7 @@ const router = express.Router()
 
 // INDEX
 // GET /setups
+// W O R K S //
 router.get('/setups', requireToken, (req, res, next) => {
 	Setup.find()
 		.then((setups) => {
@@ -57,6 +58,7 @@ router.get('/setups/:id', requireToken, (req, res, next) => {
 
 // CREATE
 // POST /setups
+// W O R K S //
 router.post('/setups', requireToken, (req, res, next) => {
 	// set owner of new setup to be current user
 	req.body.setup.owner = req.user.id
