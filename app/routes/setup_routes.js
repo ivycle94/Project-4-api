@@ -46,6 +46,7 @@ router.get('/setups', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /setups/5a7db6c74d55bc51bdf39793
+// W O R K S //
 router.get('/setups/:id', requireToken, (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Setup.findById(req.params.id)
@@ -76,6 +77,7 @@ router.post('/setups', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /setups/5a7db6c74d55bc51bdf39793
+// W O R K S //
 router.patch('/setups/:id', requireToken, removeBlanks, (req, res, next) => {
 	// if the client attempts to change the `owner` property by including a new
 	// owner, prevent that by deleting that key/value pair
@@ -99,6 +101,7 @@ router.patch('/setups/:id', requireToken, removeBlanks, (req, res, next) => {
 
 // DESTROY
 // DELETE /setups/5a7db6c74d55bc51bdf39793
+// W O R K S //
 router.delete('/setups/:id', requireToken, (req, res, next) => {
 	Setup.findById(req.params.id)
 		.then(handle404)
