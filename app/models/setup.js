@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const User = require('./user')
 const { Schema, model } = mongoose
 
-const outfitsSchema = new mongoose.Schema(
+const setupSchema = new mongoose.Schema(
     {
         Title: {
             type: String,
@@ -26,7 +26,7 @@ const outfitsSchema = new mongoose.Schema(
         },
         comments: [commentSchema]
     },
-    
+
     {
 		timestamps: true,
 	}
@@ -34,4 +34,4 @@ const outfitsSchema = new mongoose.Schema(
 
 
 
-module.exports = mongoose.model('Setup', SetupSchema)
+module.exports = mongoose.model('Setup', setupSchema)
