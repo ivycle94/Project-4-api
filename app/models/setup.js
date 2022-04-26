@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('./user')
+const Tag = require('./tag')
 const commentSchema = require('./comment')
 const { Schema, model } = mongoose
 
@@ -27,10 +28,7 @@ const setupSchema = new mongoose.Schema(
         },
         comments: [commentSchema]
     },
-
-    {
-		timestamps: true,
-	}
+    {timestamps: true,}
 )
 
 
