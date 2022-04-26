@@ -5,23 +5,23 @@ const db = require('../../config/db')
 
 
 
-const btl_stations = [
+const setups = [
   {
     title: "station1",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a purus ornare est eleifend mollis at sit amet diam. Sed nec vulputate sapien. Nulla dolor lacus, posuere molestie eleifend sit amet, viverra nec nulla. Integer tempor porttitor ante et consectetur. Phasellus a tempor ex. In sed ultrices velit, eu fringilla arcu. Duis elit sem, blandit vitae leo non, sodales blandit libero. Aliquam mi nulla, condimentum nec sollicitudin a, feugiat vel nulla. Vivamus luctus ornare risus eget pulvinar. Vivamus dolor dui, varius vitae velit ultrices, vulputate ultrices ligula.",
     img: "https://imgur.com/r/battlestations/nsFcTI6",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a purus ornare est eleifend mollis at sit amet diam. Sed nec vulputate sapien. Nulla dolor lacus, posuere molestie eleifend sit amet, viverra nec nulla. Integer tempor porttitor ante et consectetur. Phasellus a tempor ex. In sed ultrices velit, eu fringilla arcu. Duis elit sem, blandit vitae leo non, sodales blandit libero. Aliquam mi nulla, condimentum nec sollicitudin a, feugiat vel nulla. Vivamus luctus ornare risus eget pulvinar. Vivamus dolor dui, varius vitae velit ultrices, vulputate ultrices ligula.",
     tags: [],
   },
   {
     title: "station2",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a purus ornare est eleifend mollis at sit amet diam. Sed nec vulputate sapien. Nulla dolor lacus, posuere molestie eleifend sit amet, viverra nec nulla. Integer tempor porttitor ante et consectetur. Phasellus a tempor ex. In sed ultrices velit, eu fringilla arcu. Duis elit sem, blandit vitae leo non, sodales blandit libero. Aliquam mi nulla, condimentum nec sollicitudin a, feugiat vel nulla. Vivamus luctus ornare risus eget pulvinar. Vivamus dolor dui, varius vitae velit ultrices, vulputate ultrices ligula.",
     img: "https://imgur.com/r/battlestations/yl3sMIN",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a purus ornare est eleifend mollis at sit amet diam. Sed nec vulputate sapien. Nulla dolor lacus, posuere molestie eleifend sit amet, viverra nec nulla. Integer tempor porttitor ante et consectetur. Phasellus a tempor ex. In sed ultrices velit, eu fringilla arcu. Duis elit sem, blandit vitae leo non, sodales blandit libero. Aliquam mi nulla, condimentum nec sollicitudin a, feugiat vel nulla. Vivamus luctus ornare risus eget pulvinar. Vivamus dolor dui, varius vitae velit ultrices, vulputate ultrices ligula.",
     tags: [],
   },
   {
     title: "station3",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a purus ornare est eleifend mollis at sit amet diam. Sed nec vulputate sapien. Nulla dolor lacus, posuere molestie eleifend sit amet, viverra nec nulla. Integer tempor porttitor ante et consectetur. Phasellus a tempor ex. In sed ultrices velit, eu fringilla arcu. Duis elit sem, blandit vitae leo non, sodales blandit libero. Aliquam mi nulla, condimentum nec sollicitudin a, feugiat vel nulla. Vivamus luctus ornare risus eget pulvinar. Vivamus dolor dui, varius vitae velit ultrices, vulputate ultrices ligula.",
     img: "https://imgur.com/r/battlestations/NLEiwJz",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a purus ornare est eleifend mollis at sit amet diam. Sed nec vulputate sapien. Nulla dolor lacus, posuere molestie eleifend sit amet, viverra nec nulla. Integer tempor porttitor ante et consectetur. Phasellus a tempor ex. In sed ultrices velit, eu fringilla arcu. Duis elit sem, blandit vitae leo non, sodales blandit libero. Aliquam mi nulla, condimentum nec sollicitudin a, feugiat vel nulla. Vivamus luctus ornare risus eget pulvinar. Vivamus dolor dui, varius vitae velit ultrices, vulputate ultrices ligula.",
     tags: [],
   },
 ]
