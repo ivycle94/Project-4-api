@@ -5,6 +5,7 @@ const passport = require('passport')
 
 // pull in Mongoose model for examples
 const Tag = require('../models/tag')
+const Setup = require('../models/setup')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -21,6 +22,7 @@ const requireOwnership = customErrors.requireOwnership
 const removeBlanks = require('../../lib/remove_blank_fields')
 const setup = require('../models/setup')
 const { ConnectionCheckOutFailedEvent } = require('mongodb')
+const tag = require('../models/tag')
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `req.user`
@@ -62,6 +64,39 @@ router.post('/tags', requireToken, (req, res, next) => {
 		.catch(next)
 })
 
+// UPDATE
+// PATCH /examples/5a7db6c74d55bc51bdf39793
+router.patch('/tags/:setupId/:tagId', requireToken, removeBlanks, (req, res, next) => {
+	// if the client attempts to change the `owner` property by including a new
+	// owner, prevent that by deleting that key/value pair
+    const setupId = req.params.setupId
+
+	Setup.findById(setupId)
+		.then(handle404)
+		.then((setup) => {
+			console.log("this is the setup id", setupId)
+			const tagId = req.params.tagId
+			setup.tags.push(tagId)
+            // you have the setup now
+            // have to grab the tagId
+            Tag.findById(tagId)
+                .then(tag => {
+					console.log("this is the tag id", tag)
+					console.log("this is the tag setup", setup)
+					const setupId = req.params.setupId
+						// once you found the tagId
+						// push tagId into the tags of setup
+						tag.setups.push(setupId)
+						// save the tagId that was pushed
+						return setup.save()	
+				})
+                .catch(next)
+		})
+	// if that succeeded, return 204 and no JSON
+	.then(() => res.sendStatus(204))
+	// if an error occurs, pass it to the handler
+	.catch(next)
+})
 
 // DESTROY
 // DELETE /tags/5a7db6c74d55bc51bdf39793
