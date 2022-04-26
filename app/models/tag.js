@@ -6,7 +6,7 @@ const tagSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		setup: [{
+		setups: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Setup'
 		}],
