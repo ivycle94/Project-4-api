@@ -29,26 +29,33 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
+// INDEX
+// GET /setups
+// W O R K S //
+router.get('/tags', requireToken, (req, res, next) => {
+	Tag.find()
+		.then((tags) => {
+			// `setups` will be an array of Mongoose documents
+			// we want to convert each one to a POJO, so we use `.map` to
+			// apply `.toObject` to each one
+			return tags.map((tag) => tag.toObject())
+		})
+		// respond with status 200 and JSON of the setups
+		.then((tags) => res.status(200).json({ tags: tags }))
+		// if an error occurs, pass it to the handler
+		.catch(next)
+})
 
 // CREATE
 // POST /tags
-router.post('/tags/:setupId', requireToken, (req, res, next) => {
+router.post('/tags', requireToken, (req, res, next) => {
 	// set owner of new example to be current user
-	req.body.example.owner = req.user.id
-    const setupId = req.params.setupId
     const tag = req.body.tag
 
-	Setup.findById(setupId)
-        .then((setup => {
-            console.log("This is the setup\n", setup)
-            Tag.create(tag)
-                .then(tag => {
-                    console.log("this is the new tag\n", tag)
-                    setup.tags.push(tag)
-                    setup.save()
-                    res.status(201).json({ tag:tag.toObject()})
-                })
-        }))
+	Tag.create(tag)
+        .then(tag => {
+            res.status(201).json({ tag: tag.toObject() })
+        })
 		// if an error occurs, pass it off to our error handler
 		// the error handler needs the error message and the `res` object so that it
 		// can send an error message back to the client
