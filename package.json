@@ -1,11 +1,13 @@
 {
-  "name": "express-auth-mongoose-boilerplate",
+  "name": "app",
   "version": "1.0.0",
   "description": "app for project 4 - Battlestations",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node ./app/models/seed.js",
+    "seedTag": "node ./app/models/seedTags.js"
   },
   "author": "Ivy Le",
   "license": "ISC",

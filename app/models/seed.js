@@ -201,7 +201,7 @@ mongoose.connect(db, {
         console.log('deleted Setups', deletedSetups)
         // then we create using the startPets array
         // we'll use console logs to check if it's working or if there are errors
-        Setup.create(btl_stations)
+        Setup.create(setups)
           .then(newSetups => {
             console.log('the new Setups', newSetups)
             mongoose.connection.close()

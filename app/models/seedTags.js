@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Tag = require('./tags')
+const Tag = require('./tag')
 const db = require('../../config/db')
 
 const tags = [
@@ -107,14 +107,14 @@ const tags = [
     })
     .then(() => {
       // then we remove all the places
-      Setup.deleteMany({ owner: null })
-        .then(deletedSetups => {
-          console.log('deleted Setups', deletedSetups)
+      Tag.deleteMany({ owner: null })
+        .then(deletedTags => {
+          console.log('deleted Setups', deletedTags)
           // then we create using the startPets array
           // we'll use console logs to check if it's working or if there are errors
-          Setup.create(btl_stations)
-            .then(newSetups => {
-              console.log('the new Setups', newSetups)
+          Tag.create(tags)
+            .then(newTags => {
+              console.log('the new Setups', newTags)
               mongoose.connection.close()
             })
             .catch(err => {
