@@ -83,12 +83,13 @@ router.patch('/tags/:setupId/:tagId', requireToken, removeBlanks, (req, res, nex
                 .then(tag => {
 					console.log("this is the tag id", tag)
 					console.log("this is the tag setup", setup)
-					const setupId = req.params.setupId
+					// const setupId = req.params.setupId
 						// once you found the tagId
 						// push tagId into the tags of setup
 						tag.setups.push(setupId)
+						tag.save()
 						// save the tagId that was pushed
-						return setup.save()	
+						setup.save()	
 				})
                 .catch(next)
 		})
