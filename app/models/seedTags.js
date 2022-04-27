@@ -4,17 +4,101 @@ const db = require('../../config/db')
 
 const tags = [
     {
-      text: "tag1",
-      setups: [],
-    },
-    {
-        text: "tag2",
+        text: "Modern",
         setups: [],
     },
     {
-        text: "tag3",
+        text: "Plants",
         setups: [],
     },
+    {
+        text: "Cute",
+        setups: [],
+    },
+    {
+        text: "Cyberpunk",
+        setups: [],
+    },
+    {
+        text: "Ikea",
+        setups: [],
+    },
+    {
+        text: "Gaming",
+        setups: [],
+    },
+    {
+        text: "Closet",
+        setups: [],
+    },
+    {
+        text: "Black",
+        setups: [],
+    },
+    {
+        text: "RGB",
+        setups: [],
+    },
+    {
+        text: "White",
+        setups: [],
+    },
+    {
+        text: "Minimal",
+        setups: [],
+    },
+    {
+        text: "Figures",
+        setups: [],
+    },
+    {
+        text: "Van",
+        setups: [],
+    },
+    {
+        text: "Herman Miller",
+        setups: [],
+    },
+    {
+        text: "Logitech",
+        setups: [],
+    },
+    {
+        text: "Ducky",
+        setups: [],
+    },
+    {
+        text: "Books",
+        setups: [],
+    },
+    {
+        text: "Floating",
+        setups: [],
+    },
+    {
+        text: "Sound Panel",
+        setups: [],
+    },
+    {
+        text: "Corsair",
+        setups: [],
+    },
+    {
+        text: "Futuristic",
+        setups: [],
+    },
+    {
+        text: "Bed",
+        setups: [],
+    },
+    {
+        text: "Anime",
+        setups: [],
+    },
+    {
+        text: "Animal Crossing",
+        setups: [],
+    } 
   ]
   
   // connect to the db via mongoose
