@@ -101,19 +101,30 @@ router.patch('/tags/:setupId/:tagId', requireToken, removeBlanks, (req, res, nex
 
 // DESTROY
 // DELETE /tags/5a7db6c74d55bc51bdf39793
-// router.delete('/tags/:setupId/:tagId', requireToken, (req, res, next) => {
-// 	Example.findById(req.params.id)
-// 		.then(handle404)
-// 		.then((example) => {
-// 			// throw an error if current user doesn't own `example`
-// 			requireOwnership(req, example)
-// 			// delete the example ONLY IF the above didn't throw
-// 			example.deleteOne()
-// 		})
-// 		// send back 204 and no content if the deletion succeeded
-// 		.then(() => res.sendStatus(204))
-// 		// if an error occurs, pass it to the handler
-// 		.catch(next)
-// })
+router.delete('/tags/:setupId/:tagId', requireToken, (req, res, next) => {
+	const setupId = req.params.setupId
+	Setup.findById(setupId)
+		.then(handle404)
+		.then((setup) => {
+			const tagId = req.params.tagId
+			setup.tags.remove(tagId)
+			// throw an error if current user doesn't own `example`
+			requireOwnership(req, setup)
+			// delete the example ONLY IF the above didn't throw
+			Tag.findById(tagId)
+				.then(tag => {
+					console.log("this is the tag ID:\n", tagId)
+					tag.setups.remove(setupId)
+					tag.save()
+					setup.save()
+				})
+				.catch(next)
+
+		})
+		// send back 204 and no content if the deletion succeeded
+		.then(() => res.sendStatus(204))
+		// if an error occurs, pass it to the handler
+		.catch(next)
+})
 
 module.exports = router
