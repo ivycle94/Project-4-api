@@ -29,7 +29,7 @@ const router = express.Router()
 
 // CREATE
 // POST /comment
-router.post('/comments', requireToken, (req, res, next) => {
+router.post('/comments/:setupId', requireToken, (req, res, next) => {
 	// set owner of new comment to be current user
 	req.body.comment.owner = req.user.id
 
@@ -46,7 +46,7 @@ router.post('/comments', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /comment/5a7db6c74d55bc51bdf39793
-router.patch('/comments/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/comments/:setupId/:comId', requireToken, removeBlanks, (req, res, next) => {
 	// if the client attempts to change the `owner` property by including a new
 	// owner, prevent that by deleting that key/value pair
 	delete req.body.comment.owner
@@ -69,7 +69,7 @@ router.patch('/comments/:id', requireToken, removeBlanks, (req, res, next) => {
 
 // DESTROY
 // DELETE /comments/5a7db6c74d55bc51bdf39793
-router.delete('/comments/:id', requireToken, (req, res, next) => {
+router.delete('/comments/:setupId/:comId', requireToken, (req, res, next) => {
 	Comment.findById(req.params.id)
 		.then(handle404)
 		.then((comment) => {
