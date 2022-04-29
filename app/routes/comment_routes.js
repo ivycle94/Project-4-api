@@ -5,7 +5,7 @@ const passport = require('passport')
 
 // pull in Mongoose model for comments
 const Comment = require('../models/comment')
-
+const Setup = require('../models/setup')
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
 const customErrors = require('../../lib/custom_errors')
@@ -19,6 +19,7 @@ const requireOwnership = customErrors.requireOwnership
 // this is middleware that will remove blank fields from `req.body`, e.g.
 // { comment: { title: '', text: 'foo' } } -> { comment: { text: 'foo' } }
 const removeBlanks = require('../../lib/remove_blank_fields')
+// const setup = require('../models/setup')
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `req.user`
@@ -33,15 +34,50 @@ router.post('/comments/:setupId', requireToken, (req, res, next) => {
 	// set owner of new comment to be current user
 	req.body.comment.owner = req.user.id
 
-	Comment.create(req.body.comment)
-		// respond to succesful `create` with status 201 and JSON of new "comment"
-		.then((comment) => {
-			res.status(201).json({ comment: comment.toObject() })
+	// ========== ATTEMPT #1?
+	// Comment.create(req.body.comment)
+	// 	// respond to succesful `create` with status 201 and JSON of new "comment"
+	// 	.then((comment) => {
+	// 		res.status(201).json({ comment: comment.toObject() })
+	// 	})
+	// 	// if an error occurs, pass it off to our error handler
+	// 	// the error handler needs the error message and the `res` object so that it
+	// 	// can send an error message back to the client
+	// 	.catch(next)
+
+	// ========== SOLUTION #2?
+	// Setup.findById(setupId)
+	// 	.then(setup => {
+	// 		setup.comments.push(req.body.comment)
+	// 	})
+	// 	.then(() => {
+	// 		res.sendStatus(204)
+	// 	})
+	// 	.catch(console.error)
+
+	// ========== SOLUTION #3?
+	const comment = req.body.comment
+	req.body.comment.owner = req.user.id
+	//get our setupId from req.params.id
+	const setupId = req.params.setupId
+	console.log("THIS IS SETUPID LOOK EHGRE\n", setupId)
+	//find the setup
+	Setup.findById(setupId)
+		.then(handle404)
+	//push the comment to the comments array
+		.then(setup => {
+			// requireOwnership(req, setup)
+			console.log('this is the setup', setup)
+			console.log('this is the comment', comment)
+			setup.comments.push(comment)
+			//save the setup
+			return setup.save()
 		})
-		// if an error occurs, pass it off to our error handler
-		// the error handler needs the error message and the `res` object so that it
-		// can send an error message back to the client
+	//then we send the setup as json
+		.then(setup => res.status(201).json({setup: setup}))
+	//catch errors and send to the handler
 		.catch(next)
+
 })
 
 // UPDATE
