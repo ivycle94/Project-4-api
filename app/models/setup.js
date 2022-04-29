@@ -20,8 +20,12 @@ const setupSchema = new mongoose.Schema(
         },
         tags: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Tag'
+			ref: 'Tag',
         }],
+        // tags: {
+		// 	type: [mongoose.Schema.Types.ObjectId],
+		// 	ref: 'Tag'
+        // },
         owner: {
             type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',

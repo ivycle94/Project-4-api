@@ -2,20 +2,17 @@
 const express = require('express')
 // Passport docs: http://www.passportjs.org/docs/
 const passport = require('passport')
-
 // pull in Mongoose model for comments
 const Comment = require('../models/comment')
 const Setup = require('../models/setup')
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
 const customErrors = require('../../lib/custom_errors')
-
 // we'll use this function to send 404 when non-existant document is requested
 const handle404 = customErrors.handle404
 // we'll use this function to send 401 when a user tries to modify a resource
 // that's owned by someone else
 const requireOwnership = customErrors.requireOwnership
-
 // this is middleware that will remove blank fields from `req.body`, e.g.
 // { comment: { title: '', text: 'foo' } } -> { comment: { text: 'foo' } }
 const removeBlanks = require('../../lib/remove_blank_fields')
@@ -32,7 +29,8 @@ const router = express.Router()
 // POST /comment
 router.post('/comments/:setupId', requireToken, (req, res, next) => {
 	// set owner of new comment to be current user
-	req.body.comment.owner = req.user.id
+	req.body.comment.author = req.user.id
+	console.log("this is re.body.comment\n",req.body.comment)
 
 	// ========== ATTEMPT #1?
 	// Comment.create(req.body.comment)
@@ -45,7 +43,7 @@ router.post('/comments/:setupId', requireToken, (req, res, next) => {
 	// 	// can send an error message back to the client
 	// 	.catch(next)
 
-	// ========== SOLUTION #2?
+	// ========== ATTEMPT #2?
 	// Setup.findById(setupId)
 	// 	.then(setup => {
 	// 		setup.comments.push(req.body.comment)
@@ -55,20 +53,25 @@ router.post('/comments/:setupId', requireToken, (req, res, next) => {
 	// 	})
 	// 	.catch(console.error)
 
-	// ========== SOLUTION #3?
+	// ========== SOLUTION ========
 	const comment = req.body.comment
-	req.body.comment.owner = req.user.id
+	// ============ ATTEMPTS ====== 
+	// mongoose schema valid error
+	// req.body.comment.author = req.user.id
+	// req.body.comment.owner = req.user.id
+	// comment.author = req.user.id
+	//=============================
 	//get our setupId from req.params.id
 	const setupId = req.params.setupId
-	console.log("THIS IS SETUPID LOOK EHGRE\n", setupId)
+	console.log("This is setupId\n", setupId)
 	//find the setup
 	Setup.findById(setupId)
 		.then(handle404)
 	//push the comment to the comments array
 		.then(setup => {
 			// requireOwnership(req, setup)
-			console.log('this is the setup', setup)
-			console.log('this is the comment', comment)
+			// console.log('this is the setup', setup)
+			// console.log('this is the comment', comment)
 			setup.comments.push(comment)
 			//save the setup
 			return setup.save()

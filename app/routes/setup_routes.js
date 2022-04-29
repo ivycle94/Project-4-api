@@ -53,6 +53,7 @@ router.get('/setups/:id', (req, res, next) => {
 	// 422 error ^^
 	// Setup.findById(req.params._id)
 	// 404 error ^^
+		.populate("comments.author")
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "setup" JSON
 		.then((setup) => res.status(200).json({ setup: setup.toObject() }))
