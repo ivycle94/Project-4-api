@@ -109,13 +109,34 @@ router.patch('/comments/:setupId/:comId', requireToken, removeBlanks, (req, res,
 // DESTROY
 // DELETE /comments/5a7db6c74d55bc51bdf39793
 router.delete('/comments/:setupId/:comId', requireToken, (req, res, next) => {
-	Comment.findById(req.params.id)
+	// ========== ATTEMPT #1?
+	// Comment.findById(req.params.id)
+	// 	.then(handle404)
+	// 	.then((comment) => {
+	// 		// throw an error if current user doesn't own `comment`
+	// 		requireOwnership(req, comment)
+	// 		// delete the comment ONLY IF the above didn't throw
+	// 		comment.deleteOne()
+	// 	})
+	// 	// send back 204 and no content if the deletion succeeded
+	// 	.then(() => res.sendStatus(204))
+	// 	// if an error occurs, pass it to the handler
+	// 	.catch(next)
+	// ========== ATTEMPT #2?
+	const comId = req.params.comId
+	const setupId = req.params.setupId
+	Setup.findById(setupId)
 		.then(handle404)
-		.then((comment) => {
+		.then(setup => {
+			// requireOwnership(req, comment)
+			// grab id of comment
+			const comment = setup.comments.id(comId)
+			console.log("this is the comment id", comment)
 			// throw an error if current user doesn't own `comment`
-			requireOwnership(req, comment)
-			// delete the comment ONLY IF the above didn't throw
-			comment.deleteOne()
+			// comment.deleteOne()
+			comment.remove()
+			console.log("the deleted comment", comment)
+			return setup.save()
 		})
 		// send back 204 and no content if the deletion succeeded
 		.then(() => res.sendStatus(204))
