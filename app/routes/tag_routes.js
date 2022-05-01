@@ -109,7 +109,7 @@ router.delete('/tags/:setupId/:tagId', requireToken, (req, res, next) => {
 			const tagId = req.params.tagId
 			setup.tags.remove(tagId)
 			// throw an error if current user doesn't own `example`
-			requireOwnership(req, setup)
+			// requireOwnership(req, setup)
 			// delete the example ONLY IF the above didn't throw
 			Tag.findById(tagId)
 				.then(tag => {
