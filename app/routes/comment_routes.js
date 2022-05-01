@@ -130,8 +130,14 @@ router.delete('/comments/:setupId/:comId', requireToken, (req, res, next) => {
 		.then(setup => {
 			// requireOwnership(req, comment)
 			// grab id of comment
+			// ======= CONSTRUCTION: =========
+			// attempt 1
 			const comment = setup.comments.id(comId)
-			console.log("this is the comment id", comment)
+			// attempt 2
+			// const comment = setup.comments.filter((comment)=>{
+			// 	return comment._id === comId	
+			// })
+			// console.log("this is the comment id", comment)
 			// throw an error if current user doesn't own `comment`
 			// comment.deleteOne()
 			comment.remove()

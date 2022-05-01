@@ -34,7 +34,7 @@ const router = express.Router()
 // INDEX
 // GET /setups
 // W O R K S //
-router.get('/tags', requireToken, (req, res, next) => {
+router.get('/tags', (req, res, next) => {
 	Tag.find()
 		.then((tags) => {
 			// `setups` will be an array of Mongoose documents
@@ -119,7 +119,6 @@ router.delete('/tags/:setupId/:tagId', requireToken, (req, res, next) => {
 					setup.save()
 				})
 				.catch(next)
-
 		})
 		// send back 204 and no content if the deletion succeeded
 		.then(() => res.sendStatus(204))

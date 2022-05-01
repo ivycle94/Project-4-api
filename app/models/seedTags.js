@@ -43,62 +43,62 @@ const tags = [
         text: "White",
         setups: [],
     },
-    {
-        text: "Minimal",
-        setups: [],
-    },
-    {
-        text: "Figures",
-        setups: [],
-    },
-    {
-        text: "Van",
-        setups: [],
-    },
-    {
-        text: "Herman Miller",
-        setups: [],
-    },
-    {
-        text: "Logitech",
-        setups: [],
-    },
-    {
-        text: "Ducky",
-        setups: [],
-    },
-    {
-        text: "Books",
-        setups: [],
-    },
-    {
-        text: "Floating",
-        setups: [],
-    },
-    {
-        text: "Sound Panel",
-        setups: [],
-    },
-    {
-        text: "Corsair",
-        setups: [],
-    },
-    {
-        text: "Futuristic",
-        setups: [],
-    },
-    {
-        text: "Bed",
-        setups: [],
-    },
-    {
-        text: "Anime",
-        setups: [],
-    },
-    {
-        text: "Animal Crossing",
-        setups: [],
-    } 
+    // {
+    //     text: "Minimal",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Figures",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Van",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Herman Miller",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Logitech",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Ducky",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Books",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Floating",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Sound Panel",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Corsair",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Futuristic",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Bed",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Anime",
+    //     setups: [],
+    // },
+    // {
+    //     text: "Animal Crossing",
+    //     setups: [],
+    // } 
   ]
   
   // connect to the db via mongoose
