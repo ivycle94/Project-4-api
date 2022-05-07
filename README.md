@@ -1,27 +1,27 @@
-# BTL Stations (name still in progress)
+# Bastion
 
-A one stop app where gamers or battle station enthusiasts can showcase their setup or get inspiration and help for their own setup.
-
-
-# User Story:
-**As a Public User:**
-- view the index page of all PC setups available.
-- click and view individual PC setups to see specific inormation.
-- sign up
-
-**As a Logged in User:**
-- login
-- view the index page of all PC setups available.
-- click and view individual PC setups to see specific inormation.
-- click a button to save certain setups and add it to a personal list.
-- add notes to favorite setups
-- edit and up notes for fav
-- edit and remove PC setups that the user created
-- create a a new PC setup for other user's to see publicly
-- leave comments on other people's PC setups
-- logout
+ RESTful routes and backend API for the Bastion App: 
+ - https://github.com/ivycle94/Project4-client
 
 # ERD: 
 ![layout](img/ERDp4.png)
-# Wireframe:
-![layout](img/WRFMp4.jpg)
+
+# Installation Instructions:
+1. fork & clone this repo
+2. run `npm install` to install dependencies.
+3. run `npm run seed` to seed the data for setups.
+4. run `npm run seedTag` to seed the data for tags.
+
+# Tech Used: 
+- Node.js
+- Mongoose
+- Mongodb
+- Express
+
+# Stretch Goals
+- Routes
+    * Add a favorites routes
+    * Add additional query routes
+
+- External API
+    * Cloudinary API
