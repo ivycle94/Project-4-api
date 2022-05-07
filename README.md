@@ -17,6 +17,7 @@
 - Mongoose
 - Mongodb
 - Express
+- Postman
 
 # Stretch Goals
 - Routes
